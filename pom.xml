@@ -4,28 +4,109 @@
   <artifactId>EmployeeExpert</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>EmployeeExpert</name>
+  
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<version.maven.compiler.plugin>3.0</version.maven.compiler.plugin>
   	<version.java>1.7</version.java>
+  	<version.tomcat7.maven.plugin>2.2</version.tomcat7.maven.plugin>
+  	<version.myfaces.api>2.2.8</version.myfaces.api>
+  	<version.myfaces.impl>2.2.8</version.myfaces.impl>
+  	<version.jstl>1.2</version.jstl>
+  	<version.primefaces>5.2</version.primefaces>
+  	<version.spring.core>4.2.0.RELEASE</version.spring.core>
+  	<version.spring.context>4.2.0.RELEASE</version.spring.context>
+  	<version.spring.beans>4.2.0.RELEASE</version.spring.beans>
+  	<version.spring.expression>4.2.0.RELEASE</version.spring.expression>
+  	<version.spring.jdbc>4.2.0.RELEASE</version.spring.jdbc>
+  	<version.spring.orm>4.2.0.RELEASE</version.spring.orm>
+  	<version.spring.tx>4.2.0.RELEASE</version.spring.tx>
+  	<version.spring.web>4.2.0.RELEASE</version.spring.web>
+  	<version.spring.data.jpa>1.8.2</version.spring.data.jpa>
   	
   </properties>
   <build>
+  	
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.0</version>
+        <version>${version.maven.compiler.plugin}</version>
         <configuration>
           <source>${version.java}</source>
           <target>${version.java}</target>
         </configuration>
       </plugin>
+      
       <plugin>
       	<groupId>org.apache.tomcat.maven</groupId>
       	<artifactId>tomcat7-maven-plugin</artifactId>
-      	<version>2.2</version>
+      	<version>${version.tomcat7.maven.plugin}</version>
+      	<!-- biblioteki dodatkowe dla serwera tomcat -->
+      	<dependencies>
+      		<dependency>
+      			<groupId>com.microsoft.sqlserver</groupId>
+      			<artifactId>sqljdbc4</artifactId>
+      			<version>4.0</version>
+      		</dependency>
+      	</dependencies>
       </plugin>
+      <!-- Sluzy do dodawania nowcyh folderow z kodem javy lub zasobami(resources) do kompilacji projektu  -->
+      <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>build-helper-maven-plugin</artifactId>
+			<executions>
+				<execution>
+    				<id>add-db-source</id>
+    				<phase>generate-resources</phase>
+    				<goals>
+    					<goal>add-resource</goal>
+    				</goals>
+    				<configuration> 
+     					<resources>
+      						 <resource>
+         						<directory>src/main/db</directory>
+       						</resource>
+     					</resources>
+   					</configuration>
+    			</execution>
+			</executions>
+			
+		</plugin>
     </plugins>
-    
+
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.codehaus.mojo</groupId>
+    								<artifactId>
+    									build-helper-maven-plugin
+    								</artifactId>
+    								<versionRange>
+    									[1.9.1,)
+    								</versionRange>
+    								<goals>
+    									<goal>add-resource</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
   </build>
   <scm>
   	<url>https://github.com/mariusz26/EmployeeExper.git</url>
@@ -34,12 +115,12 @@
   	<dependency>
   		<groupId>org.apache.myfaces.core</groupId>
   		<artifactId>myfaces-api</artifactId>
-  		<version>2.2.8</version>
+  		<version>${version.myfaces.api}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.myfaces.core</groupId>
   		<artifactId>myfaces-impl</artifactId>
-  		<version>2.2.8</version>
+  		<version>${version.myfaces.impl}</version>
   		<exclusions>
   			<exclusion>
   				<artifactId>commons-logging</artifactId>
@@ -51,17 +132,17 @@
   	<dependency>
   		<groupId>jstl</groupId>
   		<artifactId>jstl</artifactId>
-  		<version>1.2</version>
+  		<version>${version.jstl}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.primefaces</groupId>
   		<artifactId>primefaces</artifactId>
-  		<version>5.2</version>
+  		<version>${version.primefaces}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-core</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.core}</version>
   		<exclusions>
   			<exclusion>
   				<artifactId>commons-logging</artifactId>
@@ -72,37 +153,37 @@
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-context</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.context}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-beans</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.beans}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-expression</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.expression}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-jdbc</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.jdbc}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-orm</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.orm}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-tx</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.tx}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-web</artifactId>
-  		<version>4.2.0.RELEASE</version>
+  		<version>${version.spring.web}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework.data</groupId>
@@ -143,6 +224,11 @@
   		<groupId>org.slf4j</groupId>
   		<artifactId>slf4j-log4j12</artifactId>
   		<version>1.7.12</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.flywaydb</groupId>
+  		<artifactId>flyway-core</artifactId>
+  		<version>3.2.1</version>
   	</dependency>
   </dependencies>
   <packaging>war</packaging>
