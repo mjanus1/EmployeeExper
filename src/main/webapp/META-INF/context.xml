@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" maxActive="10" maxIdle="5" maxWait="10000" name="jdbc/EmployeeExpert" password="zaq12wsx" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:sqlserver://localhost;databaseName=EmployeeExpert_dev;integratedSecurity=false;" username="sa"/>
+</Context>
