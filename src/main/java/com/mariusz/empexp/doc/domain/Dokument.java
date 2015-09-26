@@ -26,7 +26,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Dokument")
+@Table(name = "Dok_Dokument")
 @NamedQueries({
     @NamedQuery(name = "Dokument.findAll", query = "SELECT d FROM Dokument d")})
 public class Dokument implements Serializable {
@@ -49,7 +49,7 @@ public class Dokument implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "plik")
+    @Column(name = "plik", columnDefinition="image")
     private byte[] plik;
     
     @Basic(optional = false)

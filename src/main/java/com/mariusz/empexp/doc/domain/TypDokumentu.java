@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Typ_Dokumentu")
+@Table(name = "Dok_Typ_Dokumentu")
 @NamedQueries({
     @NamedQuery(name = "TypDokumentu.findAll", query = "SELECT d FROM TypDokumentu d")})
 
@@ -31,7 +31,7 @@ public class TypDokumentu implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_typ_dokumentu")
+    @Column(name = "id_typ_dokumentu",columnDefinition="tinyint")
     private Short idTypDokumentu;
     
     @Basic(optional = false)

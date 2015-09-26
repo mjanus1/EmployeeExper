@@ -8,22 +8,24 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:repository="http://www.springframework.org/schema/data/repository"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.7.xsd">
 	
 	<!-- Pobranie z zasobow JNDI poli polaczen w postaci obiektu DataSource i utworzenie go w kontescie Springa -->
 	<jee:jndi-lookup id="datasource" jndi-name="jdbc/EmployeeExpert" resource-ref="true"/>
 	<!-- baselineOnMigrate - utworzy automatycznie tabele do wersjonawania schema_version do zapisu i sprawdzania wersji bazy danych -->
 	<!-- location - gdzie sa skrypty bazy danych [classpath:.] - w sciezce klas czyli WEB-INF/classes -->
-<!-- 	<bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate" p:baselineOnMigrate="true" p:dataSource-ref="datasource" p:locations="classpath:."></bean>
- -->
+ 	<bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate" p:baselineOnMigrate="true" p:dataSource-ref="datasource" p:locations="classpath:."></bean>
+
 	<!-- JPA  -->
 	<!-- LocalContainerEntityManagerFactoryBean - zastepuje konfiguracje z pliku persiatance.xml i sluzy jako fabryka entityManagera -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="flyway">
 		<property name="dataSource" ref="datasource"/>
 		<property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence"/>
 		<!-- W jakich pakietach szukac klas domenowych - uwaga przeglada wszytskie pakiety wewnetrzne -->
@@ -46,6 +48,26 @@
 	<!-- Utworzenie obiektu menagera transakcji - poniewaz jpa wymaga aby kazda operacja byla w ramach transakcji -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"></bean>
 	
+	<!-- Podajemy pakiet gdzie spring ma szkac interfejsow dla Spring Dat JPA -->
+	<jpa:repositories base-package="com.mariusz.empexp.auth.dao"/>
+	
+	<!-- Podajemy pakiet gdzie bedzie warstwa serwisu -->
+	<context:component-scan base-package="com.mariusz.empexp.auth.service"/>
+	<!-- 
+	<context:component-scan base-package="com.mariusz.empexp.core.service"/>
+	<context:component-scan base-package="com.mariusz.empexp.dok.service"/>
+	 -->
+	<!-- wlaczamy obsluge transakcji poprzez adnotacje -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -62,7 +84,7 @@
 	<bean id="model3" class="com.mariusz.empexp.test.Model" c:name="wartosc1" p:name="wartosc3">
 	
 	</bean>
-	
+	<!-- 
 	<bean id="grupa" class="com.mariusz.empexp.auth.domain.Grupa"/>
 	<bean id="rola" class="com.mariusz.empexp.auth.domain.Rola"/>
 	<bean id="typZdarzen" class="com.mariusz.empexp.auth.domain.TypZdarzen"/>
@@ -86,6 +108,6 @@
 	
 	<bean id="dokument" class="com.mariusz.empexp.doc.domain.Dokument"/>
 	<bean id="typDokumentu" class="com.mariusz.empexp.doc.domain.TypDokumentu"/>
-	
+	 -->
 	
 </beans>

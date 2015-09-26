@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Adres")
+@Table(name = "Core_Adres")
 
 public class Adres implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -50,7 +50,7 @@ public class Adres implements Serializable {
     
     
     @OneToOne(optional = false)
-    @JoinColumn(name="idMiasto")
+    @JoinColumn(name="id_Miasto")
     private Miasto idMiasto;
 
     

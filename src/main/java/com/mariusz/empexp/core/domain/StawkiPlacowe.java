@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Stawki_Placowe")
+@Table(name = "Core_Stawki_Placowe")
 
 public class StawkiPlacowe implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -27,12 +27,12 @@ public class StawkiPlacowe implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "skladka_chorobowa")
+    @Column(name = "skladka_chorobowa",columnDefinition="tinyint")
     private short skladkaChorobowa;
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "skladka_ubezpieczenie")
+    @Column(name = "skladka_ubezpieczenie",columnDefinition="tinyint")
     private short skladkaUbezpieczenie;
   
     /*

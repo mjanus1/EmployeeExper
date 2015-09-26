@@ -20,7 +20,7 @@ public class StawkiPlacowePK implements Serializable {
 	
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_typ_umowy")
+    @Column(name = "id_typ_umowy" ,columnDefinition="tinyint")
     private short idTypUmowy;
 
 	public StawkiPlacowePK() {

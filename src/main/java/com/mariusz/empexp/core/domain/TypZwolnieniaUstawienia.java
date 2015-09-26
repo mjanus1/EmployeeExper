@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Typ_Zwolnienia_Ustawienia")
+@Table(name = "Core_Typ_Zwolnienia_Ustawienia")
 
 public class TypZwolnieniaUstawienia implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -21,12 +21,12 @@ public class TypZwolnieniaUstawienia implements Serializable {
     @EmbeddedId
     protected TypZwolnieniaUstawieniaPK typZwolnieniaUstawieniaPK;
     
-    @Column(name = "liczba_dni_wolnych")
+    @Column(name = "liczba_dni_wolnych",columnDefinition="tinyint")
     private Short liczbaDniWolnych;
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "platnosc_procent")
+    @Column(name = "platnosc_procent",columnDefinition="tinyint")
     private short platnoscProcent;
     
 

@@ -21,7 +21,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Zatrudnienie")
+@Table(name = "Core_Zatrudnienie")
 
 public class Zatrudnienie implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class Zatrudnienie implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_zatrudnienie")
+    @Column(name = "id_zatrudnienie",columnDefinition="tinyint")
     private Short idZatrudnienie;
     
     @Basic(optional = false)
@@ -53,7 +53,7 @@ public class Zatrudnienie implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "liczba_dni_dziennie")
+    @Column(name = "liczba_dni_dziennie",columnDefinition="tinyint")
     private short liczbaDniDziennie;
     
     @Basic(optional = false)

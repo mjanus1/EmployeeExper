@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,9 +29,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Uzytkownik")
-@NamedQueries({
-    @NamedQuery(name = "AuthUzytkownik.findAll", query = "SELECT a FROM AuthUzytkownik a")})
+@Table(name = "Auth_Uzytkownik")
 
 public class Uzytkownik implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -52,7 +48,7 @@ public class Uzytkownik implements Serializable {
     @Column(name = "haslo")
     private String haslo;
     
-    @Column(name = "licza_prob_logowania")
+    @Column(name = "licza_prob_logowania", columnDefinition="tinyint")
     private Short liczaProbLogowania;
     
     @Basic(optional = false)
@@ -79,15 +75,15 @@ public class Uzytkownik implements Serializable {
     
     
     @ManyToMany    
-    @JoinTable(name = "Uzytkownik_Grupa", joinColumns = {
-        @JoinColumn(name = "id_grupa")}, inverseJoinColumns = {
-        @JoinColumn(name = "login")})    
+    @JoinTable(name = "Auth_Uzytkownik_Grupa", joinColumns = {
+    		@JoinColumn(name = "login")}, inverseJoinColumns = {
+    		@JoinColumn(name = "id_grupa")})    
     private Set<Grupa> zbiorGrup;  
     
     @ManyToMany
-    @JoinTable(name ="Uzytkownik_Rola", joinColumns= {
-    		@JoinColumn(name="kod_roli")},inverseJoinColumns ={
-    		@JoinColumn(name="login")	
+    @JoinTable(name ="Auth_Uzytkownik_Rola", joinColumns= {
+    		@JoinColumn(name="login")},inverseJoinColumns ={
+    		@JoinColumn(name="kod_roli")	
     })
     private Set<Rola> zbiorRol;
     

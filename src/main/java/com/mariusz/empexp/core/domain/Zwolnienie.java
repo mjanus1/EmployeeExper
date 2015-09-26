@@ -21,7 +21,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Zwolnienie")
+@Table(name = "Core_Zwolnienie")
 
 public class Zwolnienie implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -21,7 +21,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 
 
 @Entity
-@Table(name = "Grupa")
+@Table(name = "Auth_Grupa")
 
 public class Grupa implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class Grupa implements Serializable{
     private String opis;  
     
     @ManyToMany
-    @JoinTable(name = "Role_W_Grupie", joinColumns = {
+    @JoinTable(name = "Auth_Role_W_Grupie", joinColumns = {
     	@JoinColumn(name = "id_grupa", referencedColumnName = "id_grupa")}, inverseJoinColumns = {
         @JoinColumn(name = "kod_roli", referencedColumnName = "kod_roli")})
     private Set<Rola> zbiorRul;

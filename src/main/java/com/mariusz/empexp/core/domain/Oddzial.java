@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Oddzial")
+@Table(name = "Core_Oddzial")
 
 public class Oddzial implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Stanowiska_Pracy")
+@Table(name = "Core_Stanowiska_Pracy")
 
 public class StanowiskaPracy implements Serializable {
     private static final long serialVersionUID = 1L;

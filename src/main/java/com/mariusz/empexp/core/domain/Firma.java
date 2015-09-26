@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Firma")
+@Table(name = "Core_Firma")
 
 public class Firma implements Serializable {
     private static final long serialVersionUID = 1L;

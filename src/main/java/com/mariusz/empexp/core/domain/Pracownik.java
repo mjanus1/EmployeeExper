@@ -27,7 +27,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Pracownik")
+@Table(name = "Core_Pracownik")
 
 public class Pracownik implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -58,14 +58,14 @@ public class Pracownik implements Serializable {
     private Date dataUrodzenia;
     
     @Size(max = 9)
-    @Column(name = "telefon_kom")
+    @Column(name = "telefon_kom",columnDefinition="char(9)")
     private String telefonKom;
     
     @Size(max = 12)
-    @Column(name = "telefon_stac")
+    @Column(name = "telefon_stac",columnDefinition="char(12)")
     private String telefonStac;
     @Size(max = 9)
-    @Column(name = "telefon_firmowy")
+    @Column(name = "telefon_firmowy", columnDefinition="char(9)")
     private String telefonFirmowy;
     
     @Basic(optional = false)
@@ -99,7 +99,7 @@ public class Pracownik implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 10, max = 10)
-    @Column(name = "nip")
+    @Column(name = "nip" , columnDefinition="char(10)")
     private String nip;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPracownik")

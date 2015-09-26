@@ -1,6 +1,9 @@
 package com.mariusz.empexp.test;
 
+import java.util.ResourceBundle;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -17,6 +20,9 @@ public class Kontroler {
 
 	private static final Logger logger=LoggerFactory.getLogger(Kontroler.class);
 	
+	@ManagedProperty(value="#{errors}")
+	private ResourceBundle resource;
+	
 	public String akcjaPrototyp()
 	{
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
@@ -32,4 +38,16 @@ public class Kontroler {
 		logger.debug(model.toString());
 		return null;
 	}
+	
+	public String testError()
+	{
+		logger.debug(resource.getString("test"));
+		return null;
+	}
+
+	public void setResource(ResourceBundle resource) {
+		this.resource = resource;
+	}
+	
+	
 }

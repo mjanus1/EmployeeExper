@@ -20,7 +20,7 @@ public class TypZwolnieniaUstawieniaPK implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_typ_zwolnienia")
+    @Column(name = "id_typ_zwolnienia",columnDefinition="tinyint")
     private short idTypZwolnienia;
 
   

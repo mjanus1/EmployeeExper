@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "Typ_Zwolnienia")
+@Table(name = "Core_Typ_Zwolnienia")
 
 public class TypZwolnienia implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class TypZwolnienia implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_typ_zwolnienia")
+    @Column(name = "id_typ_zwolnienia",columnDefinition="tinyint")
     private Short idTypZwolnienia;
     
     @Basic(optional = false)
