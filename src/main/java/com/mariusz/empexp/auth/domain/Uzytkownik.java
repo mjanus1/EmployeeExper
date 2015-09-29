@@ -52,7 +52,7 @@ public class Uzytkownik implements Serializable {
     @Column(name = "haslo",length=64)
     private String haslo;
     
-    @Column(name = "licza_prob_logowania", columnDefinition="tinyint")
+    @Column(name = "licza_prob_logowania", columnDefinition="tinyint",nullable=true)
     private Short liczaProbLogowania;
     
 

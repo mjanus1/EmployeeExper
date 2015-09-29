@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form id="rejestrujForm" >
+		 <p:panel id="panel">
+		
+			<h1>Witaj w panelu rejestracji</h1>
+			
+			   <p:messages globalOnly="true" showDetail="true" showSummary="false" errorStyle="color:red;" infoStyle="color:blue;" warnStyle="color:black" />              
+			
+			   <h:panelGrid columns="3" >  
+			   	
+			  
+               <p:outputLabel value=" Login: " for="login"  />          
+               <p:inputText id="login" value="#{rejestracjaK.user.login}" maxlength="20" required="true"  requiredMessage="Uzupełnij pole!" >
+               </p:inputText>
+               <p:message for="login" />
+            
+                
+               <p:outputLabel value=" Haslo " for="haslo" />               
+               <p:password id="haslo" value="#{rejestracjaK.user.haslo}"  maxlength="20" required="true"  requiredMessage="Uzupełnij pole!" />
+         
+               <p:message for="haslo"/>  
+          
+               <p:outputLabel value=" Powtórz hasło " for="repeathaslo" />  
+               <p:password id="repeathaslo"  value="#{rejestracjaK.powtorz_haslo}" required="true"  requiredMessage="Uzupełnij pole!"  >                     
+               </p:password>       
+               <p:message for="repeathaslo"/>
+                     
+                
+               <h:outputLabel value="Ważność konta od" for="konto_od" />
+			   <p:calendar id="konto_od" value="#{rejestracjaK.user.waznoscKontaOd}" locale="pl" navigator="true" pattern="yyyy-MM-dd"  converterMessage="Wprowadzono niepoprawny format daty"  required="true"  requiredMessage="Uzupełnij pole!"/>
+			   <p:message for="konto_od" />
+               
+               <h:outputLabel value="Ważność konta do" for="konto_do" />
+			   <p:calendar id="konto_do" value="#{rejestracjaK.user.waznoscKontaDo}" locale="pl" navigator="true" pattern="yyyy-MM-dd"  converterMessage="Wprowadzono niepoprawny format daty"  required="true"  requiredMessage="Uzupełnij pole!"/>
+			   <p:message for="konto_do" />
+             
+               
+             
+               <p:commandButton action="#{rejestracjaK.rejestrujAkcja}" value="Rejestruj" ajax="false"/>
+              
+               
+            </h:panelGrid>
+			
+			  
+			
+			
+			
+			</p:panel>
+		</h:form>
+
+</body> 
+</html>

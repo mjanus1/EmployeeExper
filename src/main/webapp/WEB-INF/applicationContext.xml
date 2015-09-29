@@ -66,11 +66,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
 	<!-- spring tworzy singleton object -->
 	<bean id="model1" class="com.mariusz.empexp.test.Model">
 		<constructor-arg name="name" value="hello spring singleton"></constructor-arg>

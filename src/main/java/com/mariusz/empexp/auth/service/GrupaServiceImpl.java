@@ -22,56 +22,49 @@ public class GrupaServiceImpl implements IGrupaService {
 	private IGrupaDAO dao;
 	//rollbackFor=Exception.class - oznacza wycofanie wszytskich zmian na bazie danych jesli wystapi jakikolwiek wyjatek klasy Exception
 	//@Transactional(rollbackFor=Exception.class)//wskazanie ze ta metoda jest wykonywana w ramach transakcji
-	@Transactional
+	
+
 	@Override
-	public Grupa saveGrupa(Grupa grupa) {
-		
+	public Grupa saveGrupa(Grupa grupa) {	
 		return dao.save(grupa);
 	}
 
-	@Transactional(readOnly=true)//przy operacjahc tylko odczytujacyh baze danych to read-onyly=true
 	@Override
-	public Grupa findGrupaById(Integer id) {
-		
+	public Grupa create(Grupa object) {
+		return dao.save(object);
+	}
+
+	@Override
+	public boolean delete(Grupa object) {
+		dao.delete(object);
+		return false;
+	}
+
+	@Transactional(readOnly=true) //przy operacjahc tylko odczytujacyh baze danych to read-onyly=true
+	@Override
+	public boolean deleteByID(Integer id) {
+		dao.delete(id);
+		return false;
+	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public Grupa findByID(Integer id) {
 		return dao.findOne(id);
 	}
+
+	@Transactional(readOnly=true)
+	@Override
+	public List<Grupa> findAll() {
+		return dao.findAll();
+	}
+
+
 	
 	//Spring wymaga setDao aby wstrzyknac obiekt dao
 	public void setDao(IGrupaDAO dao) {
 		this.dao = dao;
 	}
-
-	@Override
-	public Grupa create(Grupa object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean delete(Grupa object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteByID(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public Grupa findByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Grupa> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	
 
 }
