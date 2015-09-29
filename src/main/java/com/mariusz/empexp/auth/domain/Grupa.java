@@ -4,7 +4,6 @@ package com.mariusz.empexp.auth.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 
 @Entity
@@ -28,21 +28,25 @@ public class Grupa implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_grupa")
     private Integer idGrupa;
 	
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "nazwa")
+    @NotNull(message="{grupa.nazwa.required}")
+    @Size.List({
+    	@Size(min=2,message="{grupa.nazwa.size.min}"),
+    	@Size(max=20,message="{grupa.nazwa.size.max}")
+    })
+    @Column(name = "nazwa",length=20)
     private String nazwa;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{grupa.opis.required}")
     @Size(min = 1, max = 150)
-    @Column(name = "opis")
+    @Size.List({
+    	@Size(min=1,message="{grupa.opis.size.min}"),
+    	@Size(max=150,message="{grupa.opis.size.max}")
+    })
+    @Column(name = "opis",length=150)
     private String opis;  
     
     @ManyToMany

@@ -3,7 +3,6 @@ package com.mariusz.empexp.core.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Zwolnienie")
@@ -28,27 +28,27 @@ public class Zwolnienie implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_zwolnienie")
     private Integer idZwolnienie;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_od")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataOd;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_do")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataDo;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Size(min = 1, max = 500)
-    @Column(name = "opis")
+    @Size.List({
+    	@Size(min=10,message="{zwolnienie.opis.size.min}"),
+    	@Size(max=500 ,message="{zwolnienie.opis.size.max}")
+    })
+    @Column(name = "opis",length=500)
     private String opis;
   
     @OneToOne(optional = false)

@@ -2,14 +2,14 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Stawki_Placowe")
@@ -20,26 +20,18 @@ public class StawkiPlacowe implements Serializable {
     @EmbeddedId
     protected StawkiPlacowePK stawkiPlacowePK;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "podatek_dochodowy")
     private int podatekDochodowy;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "skladka_chorobowa",columnDefinition="tinyint")
     private short skladkaChorobowa;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "skladka_ubezpieczenie",columnDefinition="tinyint")
     private short skladkaUbezpieczenie;
   
-    /*
-    @JoinColumn(name = "id_typ_umowy", referencedColumnName = "id_typ_umowy", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TypUmowy coreTypUmowy;
-*/
  
 
 	public StawkiPlacowe() {

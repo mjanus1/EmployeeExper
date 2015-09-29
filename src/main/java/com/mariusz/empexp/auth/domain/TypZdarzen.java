@@ -3,7 +3,6 @@ package com.mariusz.empexp.auth.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,18 +21,19 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Table(name = "Auth_Typ_Zdarzen")
 public class TypZdarzen implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_typ_zdarzenia")
     private Long idTypZdarzenia;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "opis")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=2,message="{typZdarzen.opis.size.min}"),
+    	@Size(max=200,message="{typZdarzen.opis.size.max}")
+    })
+    @Column(name = "opis",length=200)
     private String opis;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTypZdarzenia")

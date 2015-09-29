@@ -3,7 +3,6 @@ package com.mariusz.empexp.doc.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,48 +11,45 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.core.domain.Pracownik;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "Dok_Dokument")
-@NamedQueries({
-    @NamedQuery(name = "Dokument.findAll", query = "SELECT d FROM Dokument d")})
+
 public class Dokument implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_dokument")
     private Integer idDokument;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "nazwa")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=2,message="{dokument.nazwa.size.min}"),
+    	@Size(max=100,message="{dokument.nazwa.size.max}")
+    })
+    @Column(name = "nazwa",length=100)
     private String nazwa;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{dokument.plik.required}")
     @Lob
     @Column(name = "plik", columnDefinition="image")
     private byte[] plik;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_dodania")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataDodania;

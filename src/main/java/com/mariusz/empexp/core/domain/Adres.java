@@ -2,7 +2,6 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Adres")
@@ -25,27 +24,32 @@ public class Adres implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_adres")
     private Integer idAdres;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "ulica")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=3,message="{adres.ulica.size.min}"),
+    	@Size(max=40,message="{adres.ulica.size.max}")
+    })
+    @Column(name = "ulica",length=40)
     private String ulica;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 4)
-    @Column(name = "nr_domu")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=1,message="{adres.nr_domu.size.min}"),
+    	@Size(max=4,message="{adres.nr_domu.size.max}")
+    })
+    @Column(name = "nr_domu",length=4)
     private String nrDomu;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 4)
-    @Column(name = "nr_lokalu")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=1,message="{adres.nr_lokalu.size.min}"),
+    	@Size(max=4,message="{adres.nr_lokalu.size.max}")
+    })
+    @Column(name = "nr_lokalu",length=4)
     private String nrLokalu;
     
     

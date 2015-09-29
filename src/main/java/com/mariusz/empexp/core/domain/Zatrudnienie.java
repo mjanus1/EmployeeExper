@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Zatrudnienie")
@@ -28,36 +28,30 @@ public class Zatrudnienie implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_zatrudnienie",columnDefinition="tinyint")
     private Short idZatrudnienie;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "umowa_od")
     @Temporal(TemporalType.DATE)
     private Date umowaOd;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "umowa_do")
     @Temporal(TemporalType.DATE)
     private Date umowaDo;
     
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "pensja")
     private BigDecimal pensja;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "liczba_dni_dziennie",columnDefinition="tinyint")
     private short liczbaDniDziennie;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "wymiar")
     private BigDecimal wymiar;
     

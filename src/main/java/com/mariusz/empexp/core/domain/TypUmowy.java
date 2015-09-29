@@ -2,7 +2,6 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Typ_Umowy")
@@ -22,15 +22,16 @@ public class TypUmowy implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_typ_umowy",columnDefinition="tinyint")
     private Short idTypUmowy;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "rodzaj")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=5,message="{typ_umowy.rodzaj.size.min}"),
+    	@Size(min=30,message="{typ_umowy.rodzaj.size.max}")
+    })
+    @Column(name = "rodzaj",length=30)
     private String rodzaj;
     
   

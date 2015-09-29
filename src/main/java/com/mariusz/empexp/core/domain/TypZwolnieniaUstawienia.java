@@ -2,15 +2,14 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Typ_Zwolnienia_Ustawienia")
@@ -21,11 +20,11 @@ public class TypZwolnieniaUstawienia implements Serializable {
     @EmbeddedId
     protected TypZwolnieniaUstawieniaPK typZwolnieniaUstawieniaPK;
     
+    @NotNull(message="{notNull}")
     @Column(name = "liczba_dni_wolnych",columnDefinition="tinyint")
     private Short liczbaDniWolnych;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "platnosc_procent",columnDefinition="tinyint")
     private short platnoscProcent;
     

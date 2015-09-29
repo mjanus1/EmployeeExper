@@ -17,22 +17,28 @@ public class Rola implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "kod_roli")
+    @NotNull(message="{rola.kod_roli.required}")
+	@Size.List({
+		@Size(min=2,message="{rola.kod_roli.size.min}"),
+		@Size(max=50,message="{rola.kod_roli.size.max}")
+	})
+    @Column(name = "kod_roli",length=50)
     private String kodRoli;
 	
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "nazwa_roli")
+    @NotNull(message="{rola.nazwa_roli.required}")
+    @Size.List({
+		@Size(min=2,message="{rola.nazwa_roli.size.min}"),
+		@Size(max=20,message="{rola.nazwa_roli.size.max}")
+	})
+    @Column(name = "nazwa_roli",length=20)
     private String nazwaRoli;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "opis")
+    @NotNull(message="{notNull}")
+    @Size.List({
+		@Size(min=2,message="{rola.opis.size.min}"),
+		@Size(max=20,message="{rola.opis.size.max}")
+	})
+    @Column(name = "opis",length=200)
     private String opis;
     
     

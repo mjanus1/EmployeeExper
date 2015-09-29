@@ -3,7 +3,6 @@ package com.mariusz.empexp.core.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Stanowiska_Pracy")
@@ -25,21 +25,26 @@ public class StanowiskaPracy implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_stanowisko")
     private Integer idStanowisko;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "nazwa_stanowiska")
+    @NotNull(message="{notNull}")
+    @Size(min = 5, max = 20)
+    @Size.List({
+    	@Size(min=1,message="{stanowiska_pracy.nazwa.size.min}"),
+    	@Size(max=20,message="{stanowiska_pracy.nazwa.size.max}")
+    })
+    @Column(name = "nazwa_stanowiska",length=20)
     private String nazwaStanowiska;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Size(min = 1, max = 500)
-    @Column(name = "opis_stanowiska")
+    @Size.List({
+    	@Size(min=2,message="{stanowiska_pracy.opis.size.min}"),
+    	@Size(max=500,message="{stanowiska_pracy.opis.size.max}")
+    })
+    @Column(name = "opis_stanowiska",length=500)
     private String opisStanowiska;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStanowisko")

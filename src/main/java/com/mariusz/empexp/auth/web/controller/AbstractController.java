@@ -18,7 +18,7 @@ public abstract class AbstractController {
 		String errorCode=exception.getErrorCode();
 		if(errorCode!=null)
 		{
-			String message=resource.getString(errorCode);
+			//String message=resource.getString(errorCode);
 			//JSFUtility.sendErrorMessage(message);
 		}
 		//3 wyrzucenie faceMesage dla uzytkownika

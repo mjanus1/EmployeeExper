@@ -3,7 +3,6 @@ package com.mariusz.empexp.core.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,15 +25,16 @@ public class Oddzial implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_oddzial")
     private Integer idOddzial;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "nazwa")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=3,message="{oddzial.nazwa.size.min}"),
+    	@Size(max=30,message="{oddzial.nazwa.size.max}")
+    })
+    @Column(name = "nazwa",length=30)
     private String nazwa;
     
     @OneToOne(optional = false)

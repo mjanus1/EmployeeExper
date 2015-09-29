@@ -3,7 +3,6 @@ package com.mariusz.empexp.core.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Firma")
@@ -27,15 +27,16 @@ public class Firma implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_firma")
     private Short idFirma;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "nazwa")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=3,message="{firma.nazwa.size.min}"),
+    	@Size(max=40,message="{firma.nazwa.size.max}")
+    })
+    @Column(name = "nazwa",length=40)
     private String nazwa;
     
     @OneToOne(optional = false)

@@ -2,7 +2,6 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Core_Miasto")
@@ -25,18 +24,20 @@ public class Miasto implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_miasto")
     private Integer idMiasto;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "nazwa")
+    @NotNull(message="notNull")
+    @Size.List({
+    	@Size(min=3,message="{miasto.nazwa.size.min}"),
+    	@Size(max=25,message="{miasto.nazwa.size.max}")
+    })
+    @Column(name = "nazwa",length=25)
     private String nazwa;
     
-    @Size(min=6,max = 6)
+    @NotNull(message="{notNull}")
+    @Size(min=6,max=6 ,message="{miasto.kod_pocztowy.size}")
     @Column(name = "kod_pocztowy", columnDefinition="char(6)")
     private String kodPocztowy;
   

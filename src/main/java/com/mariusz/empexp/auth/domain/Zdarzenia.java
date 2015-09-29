@@ -3,7 +3,6 @@ package com.mariusz.empexp.auth.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,14 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "Auth_Zdarzenia")
@@ -29,21 +28,21 @@ public class Zdarzenia implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_zdarzenie")
     private Long idZdarzenie;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_zdarzenia")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataZdarzenia;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "parametry")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=1,message="{zdarzenia.parametry.size.min}"),
+    	@Size(max=200,message="{zdarzenia.paramety.size.max}")
+    })
+    @Column(name = "parametry",length=200)
     private String parametry;
     
     @JoinColumn(name = "login")

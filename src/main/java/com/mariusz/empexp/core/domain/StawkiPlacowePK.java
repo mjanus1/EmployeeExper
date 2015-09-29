@@ -2,23 +2,21 @@ package com.mariusz.empexp.core.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Embeddable
 public class StawkiPlacowePK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Basic(optional = false)
-    @NotNull
+    @NotNull(message="{noNull}")
     @Column(name = "rok")
     private short rok;
 	
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_typ_umowy" ,columnDefinition="tinyint")
     private short idTypUmowy;

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,10 +22,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.mariusz.empexp.core.domain.Pracownik;
 import com.mariusz.empexp.doc.domain.Dokument;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "Auth_Uzytkownik")
@@ -36,39 +36,41 @@ public class Uzytkownik implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 12)
-    @Column(name = "login")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=5,message="{user.login.size.min}"),
+    	@Size(max=12,message="{user.login.size.max}")
+    })
+    @Column(name = "login",length=12)
     private String login;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "haslo")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=5,message="{user.haslo.size.min}"),
+    	@Size(max=64,message="{user.haslo.size.max}")
+    })  
+    @Column(name = "haslo",length=64)
     private String haslo;
     
     @Column(name = "licza_prob_logowania", columnDefinition="tinyint")
     private Short liczaProbLogowania;
     
-    @Basic(optional = false)
+
     @NotNull
-    @Column(name = "status")
+    @Column(name = "status",nullable=true)
     private boolean status;
     
-    @Basic(optional = false)
     @NotNull
-    @Column(name = "aktywne")
+    @Column(name = "aktywne",nullable=true)
     private boolean aktywne;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "waznosc_konta_od")
     @Temporal(TemporalType.DATE)
     private Date waznoscKontaOd;
     
-    @Basic(optional = false)
-    @NotNull
+
+    @NotNull(message="{notNull}")
     @Column(name = "waznosc_konta_do")
     @Temporal(TemporalType.DATE)
     private Date waznoscKontaDo;

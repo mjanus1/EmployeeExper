@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,12 +18,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.mariusz.empexp.doc.domain.Dokument;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "Core_Pracownik")
@@ -34,71 +35,76 @@ public class Pracownik implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Basic(optional = false)
     @NotNull
     @Column(name = "id_pracownik")
     private Integer idPracownik;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "imie")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=3,message="{pracownik.imie.size.min}"),
+    	@Size(max=20,message="{pracownik.imie.size.max}")
+    })
+    @Column(name = "imie",length=20)
     private String imie;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "nazwisko")
+    @NotNull(message="{notNull}")
+    @Size.List({
+    	@Size(min=3,message="{pracownik.nazwisko.size.min}"),
+    	@Size(max=40,message="{pracownik.nazwisko.size.max}")
+    })
+    @Column(name = "nazwisko",length=40)
     private String nazwisko;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_urodzenia")
     @Temporal(TemporalType.DATE)
     private Date dataUrodzenia;
     
-    @Size(max = 9)
+    @Size(min=9,max = 9,message="{pracownik.telefon_kom.size}")
     @Column(name = "telefon_kom",columnDefinition="char(9)")
     private String telefonKom;
     
-    @Size(max = 12)
+    @Size(min=12,max = 12,message="{pracownik.telefon_stac.size}")
     @Column(name = "telefon_stac",columnDefinition="char(12)")
     private String telefonStac;
-    @Size(max = 9)
+    
+    @Size(min=9,max = 9,message="{pracownik.telefon_kom.size}")
     @Column(name = "telefon_firmowy", columnDefinition="char(9)")
     private String telefonFirmowy;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "plec")
     private Character plec;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 11, max = 11)
-    @Column(name = "pesel")
+    @NotNull(message="{notNull}")
+    @Size(min = 11, max = 11,message="{pracownik.pesel.size}")
+    @Column(name = "pesel",length=11)
     private String pesel;
     
-    @Size(max = 256)
-    @Column(name = "mail")
+    @Size(max = 256,message="{pracownik.mail.size.max}")
+    @Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+    message="pracownik.mail.pattern")
+    @Column(name = "mail",length=256)
     private String mail;
-    @Size(max = 256)
-    @Column(name = "mail_firmowy")
+    
+    @Size(max = 256,message="{pracownik.mail.size.max}")
+    @Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+    message="pracownik.mail.pattern")
+    @Column(name = "mail_firmowy",length=256)
     private String mailFirmowy;
     
-    @Basic(optional = false)
-    @NotNull
+    @NotNull(message="{notNull}")
     @Column(name = "data_zatrudnienia")
     @Temporal(TemporalType.DATE)
     private Date dataZatrudnienia;
     
+    @Null
     @Column(name = "data_zwolnienia")
     @Temporal(TemporalType.DATE)
     private Date dataZwolnienia;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 10, max = 10)
+    @NotNull(message="{notNull}")
+    @Size(min = 10, max = 10 ,message="{pracownik.nip.size}")
     @Column(name = "nip" , columnDefinition="char(10)")
     private String nip;
     
