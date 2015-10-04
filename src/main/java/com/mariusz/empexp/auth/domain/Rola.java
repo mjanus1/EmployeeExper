@@ -16,7 +16,6 @@ public class Rola implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotNull(message="{rola.kod_roli.required}")
 	@Size.List({
 		@Size(min=2,message="{rola.kod_roli.size.min}"),

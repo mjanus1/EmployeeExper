@@ -27,7 +27,6 @@ public class HistoriaZatrudnienia implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_historia")
     private Integer idHistoria;
     

@@ -20,6 +20,7 @@ public class StawkiPlacowe implements Serializable {
     @EmbeddedId
     protected StawkiPlacowePK stawkiPlacowePK;
     
+    
     @NotNull(message="{notNull}")
     @Column(name = "podatek_dochodowy")
     private int podatekDochodowy;

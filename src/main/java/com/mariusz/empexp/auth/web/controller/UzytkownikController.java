@@ -1,50 +1,41 @@
 package com.mariusz.empexp.auth.web.controller;
 
 
-import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mariusz.empexp.auth.domain.Uzytkownik;
-import com.mariusz.empexp.auth.service.UzytkownikServiceImpl;
+import com.mariusz.empexp.auth.service.IUzytkownikService;
 import com.mariusz.empexp.core.exception.ServiceException;
 
 
 @ManagedBean(name="rejestracjaK")
 @ViewScoped
+
 public class UzytkownikController {
 
 	private static final Logger logger=LoggerFactory.getLogger(UzytkownikController.class);
 	
-	@Autowired
-	protected UzytkownikServiceImpl serwis;
-
+	@ManagedProperty(value="#{IUzytkownikService}")
+	protected IUzytkownikService serwis;
+	
+	
+	
 	private Uzytkownik user=new Uzytkownik();
 	private String powtorz_haslo;
 	
-	public String rejestrujAkcja()
+	public String rejestrujAkcja() throws ServiceException
 	{
-		try 
-		{
 		
-			logger.debug("ferferferf");
-			user.setLogin("user111");
-			user.setHaslo("dfdfffd");
-			user.setLiczaProbLogowania((short) 0);
-			user.setStatus(false);
-			user.setAktywne(true);
-			user.setWaznoscKontaOd(new Date(0));
-			user.setWaznoscKontaDo(new Date(0));
-			serwis.create(user);
-			
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
+		logger.debug("ferferferf");
+		logger.debug("login: "+user.getLogin());
+		serwis.create(user);
+		logger.debug("login: "+user.getLogin());
+	
 		return null;
 	}
 		
@@ -58,9 +49,8 @@ public class UzytkownikController {
 		    
 	  }
 	
-	
-	
 
+	 
 	public String getPowtorz_haslo() {
 		return powtorz_haslo;
 	}
@@ -73,11 +63,9 @@ public class UzytkownikController {
 		super();
 	}
 
-	public UzytkownikServiceImpl getSerwis() {
-		return serwis;
-	}
 
-	public void setSerwis(UzytkownikServiceImpl serwis) {
+
+	public void setSerwis(IUzytkownikService serwis) {
 		this.serwis = serwis;
 	}
 

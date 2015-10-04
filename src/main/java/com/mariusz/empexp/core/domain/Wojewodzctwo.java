@@ -25,7 +25,6 @@ public class Wojewodzctwo implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_woj")
     private Integer idWoj;
     

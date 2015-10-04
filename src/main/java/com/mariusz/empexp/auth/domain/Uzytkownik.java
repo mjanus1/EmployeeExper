@@ -8,8 +8,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,7 +33,7 @@ public class Uzytkownik implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
     @NotNull(message="{notNull}")
     @Size.List({
     	@Size(min=5,message="{user.login.size.min}"),
@@ -52,7 +50,8 @@ public class Uzytkownik implements Serializable {
     @Column(name = "haslo",length=64)
     private String haslo;
     
-    @Column(name = "licza_prob_logowania", columnDefinition="tinyint",nullable=true)
+    @NotNull
+    @Column(name = "licza_prob_logowania", columnDefinition="tinyint")
     private Short liczaProbLogowania;
     
 
@@ -104,12 +103,23 @@ public class Uzytkownik implements Serializable {
 
 	public Uzytkownik() {
     }
+	
+	
 
-    public Uzytkownik(String login) {
+    public Uzytkownik(String login, String haslo, Short liczaProbLogowania) {
+		super();
+		this.login = login;
+		this.haslo = haslo;
+		this.liczaProbLogowania = liczaProbLogowania;
+	}
+
+
+
+	public Uzytkownik(String login) {
         this.login = login;
     }
 
-    public Uzytkownik(String login, String haslo, boolean status, boolean aktywne, Date waznoscKontaOd, Date waznoscKontaDo) {
+    public Uzytkownik(String login, String haslo, Boolean status, Boolean aktywne, Date waznoscKontaOd, Date waznoscKontaDo) {
         this.login = login;
         this.haslo = haslo;
         this.status = status;

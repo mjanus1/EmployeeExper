@@ -28,7 +28,6 @@ public class Zatrudnienie implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_zatrudnienie",columnDefinition="tinyint")
     private Short idZatrudnienie;
     

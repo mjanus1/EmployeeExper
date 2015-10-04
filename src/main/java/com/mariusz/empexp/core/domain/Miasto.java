@@ -24,7 +24,6 @@ public class Miasto implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_miasto")
     private Integer idMiasto;
     

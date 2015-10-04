@@ -1,5 +1,6 @@
 package com.mariusz.empexp.auth.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +12,16 @@ import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.core.exception.ServiceException;
 
 @Service("IUzytkownikService")
-@Transactional
 public class UzytkownikServiceImpl implements IUzytkownikService{
 
 	@Autowired
-	private IUzytkownikDAO dao;
+	protected IUzytkownikDAO dao;
 	
 	@Transactional
 	@Override
 	public Uzytkownik create(Uzytkownik user) throws ServiceException {
 		
-		 dao.save(user);
-		 return null;
-		
+		 return dao.save(user);
 	}
 
 	@Override

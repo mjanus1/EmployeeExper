@@ -15,26 +15,26 @@ public class TypZwolnieniaUstawieniaPK implements Serializable {
 
     @NotNull(message="{notNull}")
     @Column(name = "rok")
-    private short rok;
+    private Short rok;
     
     @NotNull
     @Column(name = "id_typ_zwolnienia",columnDefinition="tinyint")
-    private short idTypZwolnienia;
+    private Short idTypZwolnienia;
 
   
 	public TypZwolnieniaUstawieniaPK() {
     }
 
-    public TypZwolnieniaUstawieniaPK(short rok, short idTypZwolnienia) {
+    public TypZwolnieniaUstawieniaPK(Short rok, Short idTypZwolnienia) {
         this.rok = rok;
         this.idTypZwolnienia = idTypZwolnienia;
     }
 
-	public short getRok() {
+	public Short getRok() {
 		return rok;
 	}
 
-	public void setRok(short rok) {
+	public void setRok(Short rok) {
 		this.rok = rok;
 	}
 

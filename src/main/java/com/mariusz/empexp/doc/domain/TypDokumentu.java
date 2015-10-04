@@ -25,7 +25,6 @@ public class TypDokumentu implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_typ_dokumentu",columnDefinition="tinyint")
     private Short idTypDokumentu;
     

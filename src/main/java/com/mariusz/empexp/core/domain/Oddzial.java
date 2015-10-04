@@ -25,7 +25,6 @@ public class Oddzial implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_oddzial")
     private Integer idOddzial;
     

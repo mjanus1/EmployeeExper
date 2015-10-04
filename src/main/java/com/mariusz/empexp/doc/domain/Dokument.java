@@ -32,7 +32,6 @@ public class Dokument implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_dokument")
     private Integer idDokument;
     

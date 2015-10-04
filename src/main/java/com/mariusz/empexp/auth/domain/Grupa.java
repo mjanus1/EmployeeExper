@@ -58,8 +58,18 @@ public class Grupa implements Serializable{
  
 	public Grupa() {
     }
+	
+	
 
-    public Grupa(Integer idGrupa) {
+    public Grupa(String nazwa, String opis) {
+		super();
+		this.nazwa = nazwa;
+		this.opis = opis;
+	}
+
+
+
+	public Grupa(Integer idGrupa) {
         this.idGrupa = idGrupa;
     }
 

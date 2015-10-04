@@ -35,7 +35,6 @@ public class Pracownik implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_pracownik")
     private Integer idPracownik;
     

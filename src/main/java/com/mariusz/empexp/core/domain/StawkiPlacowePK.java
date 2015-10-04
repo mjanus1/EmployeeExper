@@ -15,16 +15,16 @@ public class StawkiPlacowePK implements Serializable {
 	
     @NotNull(message="{noNull}")
     @Column(name = "rok")
-    private short rok;
+    private Short rok;
 	
     @NotNull
     @Column(name = "id_typ_umowy" ,columnDefinition="tinyint")
-    private short idTypUmowy;
+    private Short idTypUmowy;
 
 	public StawkiPlacowePK() {
     }
 
-    public StawkiPlacowePK(short rok, short idTypUmowy) {
+    public StawkiPlacowePK(Short rok, Short idTypUmowy) {
         this.rok = rok;
         this.idTypUmowy = idTypUmowy;
     }
@@ -33,7 +33,7 @@ public class StawkiPlacowePK implements Serializable {
         return rok;
     }
 
-    public void setRok(short rok) {
+    public void setRok(Short rok) {
         this.rok = rok;
     }
 
@@ -41,7 +41,7 @@ public class StawkiPlacowePK implements Serializable {
         return idTypUmowy;
     }
 
-    public void setIdTypUmowy(short idTypUmowy) {
+    public void setIdTypUmowy(Short idTypUmowy) {
         this.idTypUmowy = idTypUmowy;
     }
     

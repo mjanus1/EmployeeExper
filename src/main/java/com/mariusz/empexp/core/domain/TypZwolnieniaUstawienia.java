@@ -20,6 +20,7 @@ public class TypZwolnieniaUstawienia implements Serializable {
     @EmbeddedId
     protected TypZwolnieniaUstawieniaPK typZwolnieniaUstawieniaPK;
     
+    
     @NotNull(message="{notNull}")
     @Column(name = "liczba_dni_wolnych",columnDefinition="tinyint")
     private Short liczbaDniWolnych;

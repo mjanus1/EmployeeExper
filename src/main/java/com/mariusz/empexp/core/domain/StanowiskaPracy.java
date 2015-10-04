@@ -25,7 +25,6 @@ public class StanowiskaPracy implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_stanowisko")
     private Integer idStanowisko;
     

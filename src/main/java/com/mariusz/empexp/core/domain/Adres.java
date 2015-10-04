@@ -24,7 +24,6 @@ public class Adres implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_adres")
     private Integer idAdres;
     

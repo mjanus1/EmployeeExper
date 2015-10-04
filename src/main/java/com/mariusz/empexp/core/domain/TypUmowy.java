@@ -22,7 +22,6 @@ public class TypUmowy implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_typ_umowy",columnDefinition="tinyint")
     private Short idTypUmowy;
     

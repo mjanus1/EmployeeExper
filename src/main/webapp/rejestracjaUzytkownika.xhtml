@@ -33,7 +33,14 @@
                <p:password id="repeathaslo"  value="#{rejestracjaK.powtorz_haslo}" required="true"  requiredMessage="Uzupełnij pole!"  >                     
                </p:password>       
                <p:message for="repeathaslo"/>
-                     
+               
+               <p:outputLabel value="Licza prób logowania" for="liczbaprub"/>
+               <p:selectOneMenu id="liczbaprub" value="#{rejestracjaK.user.liczaProbLogowania}">
+               		<f:selectItem itemLabel="1" itemValue="1"/>
+               		<f:selectItem itemLabel="2" itemValue="2"/>
+               		<f:selectItem itemLabel="3" itemValue="3"/>
+               </p:selectOneMenu> 
+               <p:message for="liczbaprub"/> 
                 
                <h:outputLabel value="Ważność konta od" for="konto_od" />
 			   <p:calendar id="konto_od" value="#{rejestracjaK.user.waznoscKontaOd}" locale="pl" navigator="true" pattern="yyyy-MM-dd"  converterMessage="Wprowadzono niepoprawny format daty"  required="true"  requiredMessage="Uzupełnij pole!"/>
@@ -45,7 +52,8 @@
              
                
              
-               <p:commandButton action="#{rejestracjaK.rejestrujAkcja}" value="Rejestruj" ajax="false"/>
+               <p:commandButton id="submit" action="#{rejestracjaK.rejestrujAkcja}" value="Rejestruj" ajax="false" >
+                </p:commandButton>
               
                
             </h:panelGrid>

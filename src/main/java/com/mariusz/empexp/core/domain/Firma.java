@@ -27,7 +27,6 @@ public class Firma implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id_firma")
     private Short idFirma;
     
