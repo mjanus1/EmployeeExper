@@ -7,7 +7,6 @@ import com.mariusz.empexp.dao.CRUD.ICRUDService;
 public interface IUzytkownikService extends ICRUDService<Uzytkownik, String> {
 
 	public Uzytkownik saveUzytkownik(Uzytkownik user);
-	public boolean existsUzytkownik(String login);
 	
 	
 }

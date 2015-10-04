@@ -39,5 +39,7 @@ public class ServiceException extends Exception implements IError{
 		
 		return errorCode;
 	}
+	
+
 
 }

@@ -15,42 +15,68 @@ import com.mariusz.empexp.core.exception.ServiceException;
 
 @ManagedBean(name="rejestracjaK")
 @ViewScoped
+@SuppressWarnings("static-access")
 
-public class UzytkownikController {
+public class UzytkownikController extends AbstractController {
 
 	private static final Logger logger=LoggerFactory.getLogger(UzytkownikController.class);
 	
 	@ManagedProperty(value="#{IUzytkownikService}")
 	protected IUzytkownikService serwis;
 	
-	
-	
 	private Uzytkownik user=new Uzytkownik();
 	private String powtorz_haslo;
 	
+	AbstractController controller;
+
+	
 	public String rejestrujAkcja() throws ServiceException
 	{
+		try
+		{
+			return rejestruj();
+			
+		}
+		catch(ServiceException e)
+		{
+			//controller.handleException(e);
+			logger.debug(""+e.getErrorCode());
+		}
+		return null;
 		
-		logger.debug("ferferferf");
-		logger.debug("login: "+user.getLogin());
-		serwis.create(user);
-		logger.debug("login: "+user.getLogin());
+	}
 	
+
+	
+	
+	public String rejestruj() throws ServiceException
+	{
+		if(sprawdzhasla()==true)
+		{
+			serwis.create(user);
+			logger.debug("Dodano nowego uzytkownika");
+		}
+		else
+		{
+			controller.dodajBlad("rejestrujForm:repeathaslo", "Hasła muszą być identyczne.", "");
+		}
+				
 		return null;
 	}
 		
-	 public boolean sprawdzhasla(){
-		    if (!powtorz_haslo.equals(user.getHaslo())){
-		       
-		    	//JSFUtility.dodajOstrzezenie("rejestrujForm:repeathaslo", "hasła nie pasują", "");
-		    return false;
+
+	public boolean sprawdzhasla(){
+		    if (!powtorz_haslo.equals(user.getHaslo()))
+		    {    	
+		    	return false;
 		    }
-		    return true;
-		    
+		    return true;	    
 	  }
 	
 
-	 
+	
+	
+	
 	public String getPowtorz_haslo() {
 		return powtorz_haslo;
 	}
@@ -62,8 +88,6 @@ public class UzytkownikController {
 	public UzytkownikController() {
 		super();
 	}
-
-
 
 	public void setSerwis(IUzytkownikService serwis) {
 		this.serwis = serwis;
@@ -77,6 +101,15 @@ public class UzytkownikController {
 		this.user = user;
 	}
 
+
+	public AbstractController getController() {
+		return controller;
+	}
+
+	public void setController(AbstractController controller) {
+		this.controller = controller;
+	}
+
 	
-	
+
 }

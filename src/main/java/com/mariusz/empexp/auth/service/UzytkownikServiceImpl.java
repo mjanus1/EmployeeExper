@@ -12,6 +12,7 @@ import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.core.exception.ServiceException;
 
 @Service("IUzytkownikService")
+@Transactional
 public class UzytkownikServiceImpl implements IUzytkownikService{
 
 	@Autowired
@@ -21,7 +22,16 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 	@Override
 	public Uzytkownik create(Uzytkownik user) throws ServiceException {
 		
-		 return dao.save(user);
+		if(dao.exists(user.getLogin())==false)
+		{
+			dao.save(user);
+		}
+		else
+		{
+			throw new ServiceException("errorUserExist");
+		}
+		
+		 return null;
 	}
 
 	@Override
@@ -51,11 +61,6 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 		return dao.save(user);
 	}
 
-	@Override
-	public boolean existsUzytkownik(String login) {
-		dao.exists(login);
-		return false;
-	}	
 	
 	public void setDao(IUzytkownikDAO dao) {
 		this.dao = dao;
