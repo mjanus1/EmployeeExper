@@ -50,13 +50,16 @@
 	
 	<!-- Podajemy pakiet gdzie spring ma szkac interfejsow dla Spring Dat JPA -->
 	<jpa:repositories base-package="com.mariusz.empexp.auth.dao"/>
+	<jpa:repositories base-package="com.mariusz.empexp.core.dao"/>
+	<jpa:repositories base-package="com.mariusz.empexp.doc.dao"/>
+	
 	
 	<!-- Podajemy pakiet gdzie bedzie warstwa serwisu -->
-	<context:component-scan base-package="com.mariusz.empexp.auth.service"/>
-	<!-- 
+	<context:component-scan base-package="com.mariusz.empexp.auth.service"/> 
 	<context:component-scan base-package="com.mariusz.empexp.core.service"/>
 	<context:component-scan base-package="com.mariusz.empexp.dok.service"/>
-	 -->
+
+
 	<!-- wlaczamy obsluge transakcji poprzez adnotacje -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
@@ -79,30 +82,6 @@
 	<bean id="model3" class="com.mariusz.empexp.test.Model" c:name="wartosc1" p:name="wartosc3">
 	
 	</bean>
-	<!-- 
-	<bean id="grupa" class="com.mariusz.empexp.auth.domain.Grupa"/>
-	<bean id="rola" class="com.mariusz.empexp.auth.domain.Rola"/>
-	<bean id="typZdarzen" class="com.mariusz.empexp.auth.domain.TypZdarzen"/>
-	<bean id="zdarzenia" class="com.mariusz.empexp.auth.domain.Zdarzenia"/>
 	
-	<bean id="adres" class="com.mariusz.empexp.core.domain.Adres" />
-	<bean id="firma" class="com.mariusz.empexp.core.domain.Firma"/>
-	<bean id="historiaZatrudnienia" class="com.mariusz.empexp.core.domain.HistoriaZatrudnienia"/>
-	<bean id="miasto" class="com.mariusz.empexp.core.domain.Miasto"/>
-	<bean id="oddzial" class="com.mariusz.empexp.core.domain.Oddzial"/>
-	<bean id="pracownik" class="com.mariusz.empexp.core.domain.Pracownik"/>
-	<bean id="stanowiskoPracy" class="com.mariusz.empexp.core.domain.StanowiskaPracy"/>
-	<bean id="stawkiPlacowe" class="com.mariusz.empexp.core.domain.StawkiPlacowe"/>
-	<bean id="typUmowy" class="com.mariusz.empexp.core.domain.TypUmowy"/>
-	<bean id="typZwolnienia" class="com.mariusz.empexp.core.domain.TypZwolnienia"/>
-	<bean id="typZwolnieniaUstawienia" class="com.mariusz.empexp.core.domain.TypZwolnieniaUstawienia"/>
-	<bean id="wojewodzctwo" class="com.mariusz.empexp.core.domain.Wojewodzctwo"/>
-	<bean id="zatrudnienie"
-		class="com.mariusz.empexp.core.domain.Zatrudnienie" />
-	<bean id="zwolnienie" class="com.mariusz.empexp.core.domain.Zwolnienie"/>
-	
-	<bean id="dokument" class="com.mariusz.empexp.doc.domain.Dokument"/>
-	<bean id="typDokumentu" class="com.mariusz.empexp.doc.domain.TypDokumentu"/>
-	 -->
 	
 </beans>

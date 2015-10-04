@@ -1,4 +1,4 @@
-package com.mariusz.empexp.auth.service;
+package com.mariusz.empexp.dao.CRUD;
 
 import java.io.Serializable;
 
