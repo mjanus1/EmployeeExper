@@ -18,18 +18,16 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 	@Autowired
 	protected IUzytkownikDAO dao;
 	
-	@Transactional
+	
 	@Override
 	public Uzytkownik create(Uzytkownik user) throws ServiceException {
 		
-		if(dao.exists(user.getLogin())==false)
-		{
+		if(dao.exists(user.getLogin())==false){
 			dao.save(user);
 		}
-		else
-		{
-			throw new ServiceException("errorUserExist");
-		}
+			else{
+				throw new ServiceException("errorUserExist");
+			}
 		
 		 return null;
 	}
@@ -40,17 +38,20 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 		return false;
 	}
 
+	@Transactional
 	@Override
 	public boolean deleteByID(String login) {
 		dao.delete(login);
 		return false;
 	}
 
+	@Transactional(readOnly=true)
 	@Override
 	public Uzytkownik findByID(String login) {
 		return dao.findOne(login);
 	}
 
+	@Transactional(readOnly=true)
 	@Override
 	public List<Uzytkownik> findAll() {
 		return dao.findAll();

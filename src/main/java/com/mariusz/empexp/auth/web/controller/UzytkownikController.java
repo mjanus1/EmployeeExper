@@ -15,7 +15,7 @@ import com.mariusz.empexp.core.exception.ServiceException;
 
 @ManagedBean(name="rejestracjaK")
 @ViewScoped
-@SuppressWarnings("static-access")
+
 
 public class UzytkownikController extends AbstractController {
 
@@ -27,19 +27,17 @@ public class UzytkownikController extends AbstractController {
 	private Uzytkownik user=new Uzytkownik();
 	private String powtorz_haslo;
 	
-	AbstractController controller;
 
 	
 	public String rejestrujAkcja() throws ServiceException
 	{
 		try
 		{
-			return rejestruj();
-			
+			return rejestruj();		
 		}
-		catch(ServiceException e)
+		catch(ServiceException e )
 		{
-			//controller.handleException(e);
+			handleException(e);
 			logger.debug(""+e.getErrorCode());
 		}
 		return null;
@@ -54,11 +52,12 @@ public class UzytkownikController extends AbstractController {
 		if(sprawdzhasla()==true)
 		{
 			serwis.create(user);
+			dodajWiadomoscGlobalna("Dodano nowego użytkownika", "");
 			logger.debug("Dodano nowego uzytkownika");
 		}
 		else
 		{
-			controller.dodajBlad("rejestrujForm:repeathaslo", "Hasła muszą być identyczne.", "");
+			dodajBlad("rejestrujForm:repeathaslo", "Hasła muszą być identyczne.", "");
 		}
 				
 		return null;
@@ -101,15 +100,5 @@ public class UzytkownikController extends AbstractController {
 		this.user = user;
 	}
 
-
-	public AbstractController getController() {
-		return controller;
-	}
-
-	public void setController(AbstractController controller) {
-		this.controller = controller;
-	}
-
-	
 
 }

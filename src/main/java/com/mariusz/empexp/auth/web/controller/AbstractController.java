@@ -8,14 +8,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.mariusz.empexp.core.exception.ServiceException;
 
 public abstract class AbstractController {
-
-	private static final Logger logger=LoggerFactory.getLogger(AbstractController.class);
 	
 	@ManagedProperty(value="#{errors}")
 	public ResourceBundle resource;
@@ -28,8 +23,19 @@ public abstract class AbstractController {
 		if(errorCode!=null)
 		{
 			String message=resource.getString(errorCode);
-				logger.debug("tu jestem loger"+message);
+			if(errorCode.contains("error"))
+			{
 				dodajBladGlobalny(""+message, "fewfwf");
+			}
+			if(errorCode.contains("info"))
+			{
+				dodajWiadomoscGlobalna(""+message,"");
+			}
+			if(errorCode.contains("warning"))
+			{
+				dodajOstrzezenieGlobalne(""+message, "");
+			}
+						
 						
 		}
 		
@@ -97,10 +103,13 @@ public abstract class AbstractController {
 	}
 	
 	
+
 	
 	public void setResource(ResourceBundle resource) {
 		this.resource = resource;
 	}
+
+
 
 	public ResourceBundle getResource() {
 		return resource;
