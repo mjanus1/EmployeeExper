@@ -38,12 +38,13 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 		return false;
 	}
 
-	@Transactional
+	//@Transactional
 	@Override
 	public boolean deleteByID(String login) {
 		dao.delete(login);
 		return false;
 	}
+	
 
 	@Transactional(readOnly=true)
 	@Override
@@ -67,6 +68,7 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 		this.dao = dao;
 	}
 
+	
 	
 	
 	

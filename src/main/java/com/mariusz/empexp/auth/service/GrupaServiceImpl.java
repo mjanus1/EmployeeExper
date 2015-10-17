@@ -40,7 +40,7 @@ public class GrupaServiceImpl implements IGrupaService {
 		return false;
 	}
 
-	@Transactional(readOnly=true) //przy operacjahc tylko odczytujacyh baze danych to read-onyly=true
+//	@Transactional(readOnly=true) //przy operacjahc tylko odczytujacyh baze danych to read-onyly=true
 	@Override
 	public boolean deleteByID(Integer id) {
 		dao.delete(id);

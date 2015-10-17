@@ -17,9 +17,9 @@ import com.mariusz.empexp.core.exception.ServiceException;
 @ViewScoped
 
 
-public class UzytkownikController extends AbstractController {
+public class DodajUzytkownikaController extends AbstractController {
 
-	private static final Logger logger=LoggerFactory.getLogger(UzytkownikController.class);
+	private static final Logger logger=LoggerFactory.getLogger(DodajUzytkownikaController.class);
 	
 	@ManagedProperty(value="#{IUzytkownikService}")
 	protected IUzytkownikService serwis;
@@ -84,7 +84,7 @@ public class UzytkownikController extends AbstractController {
 		this.powtorz_haslo = powtorz_haslo;
 	}
 
-	public UzytkownikController() {
+	public DodajUzytkownikaController() {
 		super();
 	}
 

@@ -67,6 +67,7 @@ public class ListaUzytkownikowController extends AbstractController implements S
 		//if(login!=null)
 	//	{
 			servis.deleteByID(login);
+			//serwisG.deleteByID(1);
 			dodajWiadomoscGlobalna("Usunięto Uzytkownika", "");
 			this.listaUserow=servis.findAll();
 	//	}
