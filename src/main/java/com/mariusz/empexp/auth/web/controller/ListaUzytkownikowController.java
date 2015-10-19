@@ -40,7 +40,6 @@ public class ListaUzytkownikowController extends AbstractController implements S
 		if(!FacesContext.getCurrentInstance().isPostback())//gwarancje ze kod wykona sie tylko przy pierwszym wyswietleniu strony
 		{ 
 			listaUserow=servis.findAll();	
-		//	logger.debug(""+listaUserow);
 		}
 	}
 	
@@ -62,17 +61,15 @@ public class ListaUzytkownikowController extends AbstractController implements S
 	public String usunUzytkownika()throws ServiceException
 	{
 		String login=pobierzParametr("login");
-		logger.debug("cos tu nie tak z parametrem  ");
-		System.out.println("pobrano login:" +login);
-		//if(login!=null)
-	//	{
+		logger.debug("pobrano login:" +login);
+		if(login!=null)
+		{
 			servis.deleteByID(login);
-			//serwisG.deleteByID(1);
 			dodajWiadomoscGlobalna("Usunięto Uzytkownika", "");
 			this.listaUserow=servis.findAll();
-	//	}
-		//else
-		//	dodajBladGlobalny("Nie można usunąć użytkownika", "");
+		}
+		 else
+			dodajBladGlobalny("Nie można usunąć użytkownika", "");
 		return null;
 	}
 	

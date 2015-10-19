@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,7 +22,6 @@ import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.mariusz.empexp.core.domain.Pracownik;
 import com.mariusz.empexp.doc.domain.Dokument;
@@ -34,15 +32,14 @@ import com.mariusz.empexp.doc.domain.Dokument;
 public class Uzytkownik implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    @Id 
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Id
+    
     @NotNull(message="{notNull}")
     @Size.List({
     	@Size(min=5,message="{user.login.size.min}"),
     	@Size(max=12,message="{user.login.size.max}")
     })
-    @Column(name = "login",length=12,nullable=false)
+    @Column(name = "login",length=12)
     private String login;
     
     @NotNull(message="{notNull}")
