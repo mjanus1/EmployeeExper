@@ -3,13 +3,19 @@ package com.mariusz.empexp.auth.web.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.auth.service.IUzytkownikService;
@@ -30,17 +36,26 @@ public class ListaUzytkownikowController extends AbstractController implements S
 	protected IUzytkownikService servis;
 	
 	private List<Uzytkownik> listaUserow;
+	private Page<Uzytkownik> pageSortAndPading;
 	private List<Uzytkownik> listaFiltracji;
-
 	
+	private LazyDataModel<Uzytkownik> lazyModel;
+	private LazyUzytkownikDataModel lazyData;
+	
+	//@PostConstruct
 	public void init()
 	{
 		System.out.println("Init");
 		//isPostback() - zwraca true jesli juz bylismy na tej stronie i wykonalismy jakas akcje
 		if(!FacesContext.getCurrentInstance().isPostback())//gwarancje ze kod wykona sie tylko przy pierwszym wyswietleniu strony
-		{ 
-			listaUserow=servis.findAll();	
-		}
+		//{
+			//Sort sort = new Sort(Direction.ASC,"login");
+			//pageSortAndPading = servis.findAll(0, 15,sort);
+			//listaUserow=pageSortAndPading.getContent();
+			
+			lazyModel=new LazyUzytkownikDataModel(servis.findAll());
+	
+		
 	}
 	
 	
@@ -73,7 +88,25 @@ public class ListaUzytkownikowController extends AbstractController implements S
 		return null;
 	}
 	
+	public void onRowEdit(RowEditEvent event) {
+		Uzytkownik userEdytowany =(Uzytkownik)event.getObject();
+		Uzytkownik user = servis.findByID(userEdytowany.getLogin());
+		
+		if(userEdytowany!=user && userEdytowany!=null)
+		{
+	    	servis.saveUzytkownik(userEdytowany);
+			AbstractController.dodajWiadomoscGlobalna("użytkownika: "+user.getLogin(),"Pomyślnie zaktualizowano");	
+		}
+			
+    }
+	public void onRowCancel(RowEditEvent event) {
+		
+		Uzytkownik u =(Uzytkownik)event.getObject();
+		AbstractController.dodajWiadomoscGlobalna("użytkownika: "+u.getLogin(),"Anulowano edycje");
+       
+    }
 	
+
 	
 	
 	
@@ -100,5 +133,37 @@ public class ListaUzytkownikowController extends AbstractController implements S
 	public void setListaFiltracji(List<Uzytkownik> listaFiltracji) {
 		this.listaFiltracji = listaFiltracji;
 	}
+
+
+	public Page<Uzytkownik> getPageSortAndPading() {
+		return pageSortAndPading;
+	}
+
+
+	public void setPageSortAndPading(Page<Uzytkownik> pageSortAndPading) {
+		this.pageSortAndPading = pageSortAndPading;
+	}
+
+
+	public LazyUzytkownikDataModel getLazyData() {
+		return lazyData;
+	}
+
+
+	public void setLazyData(LazyUzytkownikDataModel lazyData) {
+		this.lazyData = lazyData;
+	}
+
+
+	public LazyDataModel<Uzytkownik> getLazyModel() {
+		return lazyModel;
+	}
+
+
+	public void setLazyModel(LazyDataModel<Uzytkownik> lazyModel) {
+		this.lazyModel = lazyModel;
+	}
+
+
 	
 }

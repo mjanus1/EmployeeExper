@@ -30,10 +30,15 @@ import com.mariusz.empexp.doc.domain.Dokument;
 @Table(name = "Auth_Uzytkownik")
 
 public class Uzytkownik implements Serializable {
+	
+	public class _Uzytkownik{
+		public static final String LOGIN="login";
+		public static final String HASLO="haslo";
+	}
+	
     private static final long serialVersionUID = 1L;
     
-    @Id
-    
+    @Id    
     @NotNull(message="{notNull}")
     @Size.List({
     	@Size(min=5,message="{user.login.size.min}"),
@@ -95,7 +100,8 @@ public class Uzytkownik implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "login")
     private List<Zdarzenia> listaZdarzen;
     
-    @OneToOne(optional=false)
+    
+    @OneToOne
     @JoinColumn(name = "id_pracownik")
     private Pracownik idPracownik;
 
