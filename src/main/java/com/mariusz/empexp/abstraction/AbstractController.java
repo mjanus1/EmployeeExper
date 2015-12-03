@@ -1,4 +1,4 @@
-package com.mariusz.empexp.auth.web.controller;
+package com.mariusz.empexp.abstraction;
 
 import java.util.Map;
 import java.util.ResourceBundle;

@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mariusz.empexp.abstraction.AbstractController;
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.auth.service.IUzytkownikService;
 import com.mariusz.empexp.core.exception.ServiceException;

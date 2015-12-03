@@ -8,20 +8,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
+//import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.web.jsf.FacesContextUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.context.FacesContext;
-
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.auth.domain.Uzytkownik._Uzytkownik;
 import com.mariusz.empexp.auth.domain.spec.UzytkownikSpecification;
@@ -40,6 +34,7 @@ public class LazyUzytkownikDataModel extends LazyDataModel<Uzytkownik> {
 	public LazyUzytkownikDataModel(List<Uzytkownik> datasource) {
 		this.datasource = datasource;
 	}
+	
 	
 	 @Override
 	    public Uzytkownik getRowData(String rowKey) {
@@ -64,7 +59,8 @@ public class LazyUzytkownikDataModel extends LazyDataModel<Uzytkownik> {
 		return uzytkownik.getLogin();
 	}
     //public abstract load(PageRequest page,Map<String,Object> filters)
-	@Override
+	
+	
 	public List<Uzytkownik> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters)
 		{
 		Direction direction=null;
@@ -76,9 +72,7 @@ public class LazyUzytkownikDataModel extends LazyDataModel<Uzytkownik> {
 		if (logger.isDebugEnabled()) {
 			logger.debug("load(int, int, String, SortOrder, Map<String,Object>) - load - first={}, pageSize={}, sortField={}, sortOrder={}, filters={}", first, pageSize, sortField, sortOrder, filters); //$NON-NLS-1$
 		}
-		//String text=null;
-		//if(..) text=...
-		//text.equals("Michal")=>> "Michal".equals(text) <--zwraca false jesli text=null
+		
 		
 		PageRequest request=null;
 		if(sortField==null||sortField.length()==0)
@@ -103,14 +97,15 @@ public class LazyUzytkownikDataModel extends LazyDataModel<Uzytkownik> {
 		}
 		
 		Page<Uzytkownik> resultPage=null;
-		if(loginSpec==null)
-			resultPage=servis.findAll(request);
-		else
+		  if(loginSpec==null)
+			 resultPage=servis.findAll(request);
+		  else
 			resultPage=servis.findAll(loginSpec, request);
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("load(int, int, String, SortOrder, Map<String,Object>) - spring result - resultPage={}", resultPage); //$NON-NLS-1$
-		}
+		  if (logger.isDebugEnabled()) {
+			  logger.debug("load(int, int, String, SortOrder, Map<String,Object>) - spring result - resultPage={}", resultPage); //$NON-NLS-1$
+		  }
+		  
 		this.setRowCount((int)resultPage.getTotalElements());
 		List<Uzytkownik> datasource=resultPage.getContent();
 

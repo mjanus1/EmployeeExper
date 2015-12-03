@@ -6,8 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -17,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 
+import com.mariusz.empexp.abstraction.AbstractController;
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.auth.service.IUzytkownikService;
 import com.mariusz.empexp.core.exception.ServiceException;
@@ -42,19 +41,16 @@ public class ListaUzytkownikowController extends AbstractController implements S
 	private LazyDataModel<Uzytkownik> lazyModel;
 	private LazyUzytkownikDataModel lazyData;
 	
-	//@PostConstruct
+	@PostConstruct
 	public void init()
 	{
 		System.out.println("Init");
 		//isPostback() - zwraca true jesli juz bylismy na tej stronie i wykonalismy jakas akcje
 		if(!FacesContext.getCurrentInstance().isPostback())//gwarancje ze kod wykona sie tylko przy pierwszym wyswietleniu strony
-		//{
-			//Sort sort = new Sort(Direction.ASC,"login");
-			//pageSortAndPading = servis.findAll(0, 15,sort);
-			//listaUserow=pageSortAndPading.getContent();
+		{
 			
 			lazyModel=new LazyUzytkownikDataModel(servis.findAll());
-	
+		}
 		
 	}
 	

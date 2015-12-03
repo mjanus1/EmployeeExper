@@ -6,7 +6,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
+//import org.springframework.data.jpa.domain.Specifications;
 
 import com.mariusz.empexp.auth.domain.Uzytkownik;
 import com.mariusz.empexp.auth.domain.Uzytkownik._Uzytkownik;

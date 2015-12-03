@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition >
+		<h:form id="loginForm" rendered="#{sesja.isNiezalogowany()}"  style="float:right;" >
+			<p:growl id="growl" showDetail="true" sticky="false" life="3000"  > 
+			<table id="login">
+				<tr>
+					<td><p:outputLabel value="Login" for="login" /></td>
+					<td>
+						<p:inputText id="login" value="#{loginK.user.login}"  maxlength="20" style="width:150px;" >
+							
+						</p:inputText>
+					</td>
+					<td><p:outputLabel  value="Hasło" for="haslo" /></td>
+					<td><p:password  id="haslo" value="#{loginK.user.haslo}" style="width:150px;" /> </td>
+					<td ><p:commandButton action="#{loginK.loginAkcja()}" value="Zaloguj" update="@form" ajax="false" /></td>
+					<td><p:button outcome="rejestracja" value="Rejestracja" /></td>
+				</tr>
+			</table>
+			</p:growl>
+			
+		</h:form>
+		<h:form id="logutForm" rendered="#{sesja.isZalogowany()}" style="float:right;">
+			<table>
+			    
+				<tr>
+					<td><h:outputText value="Witaj,  " ></h:outputText></td>
+					<td><h:outputText value="#{sesja.zalogowanyUzytkownik.login} " /></td>
+					<td><p:commandButton value="Wyloguj" action="#{sesja.wylogujAkcja()}" />  </td>
+				</tr>
+			</table>
+		</h:form>
+		<br style="clear:both;"/>
+	</ui:composition>
+
+</html>

@@ -1,0 +1,132 @@
+
+#top {
+    
+    background-color:white /*#036fab*/;
+    color: white;
+   	/*
+    padding: 15px;
+    margin: 0px 0px 10px 0px;
+    border:2px solid black;
+    */
+}
+
+
+#left {
+	
+    float: left;
+    /*background-color: #ece3a5;*/
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+    width: 200px;
+    height: auto;
+    /*border:1px solid black;*/
+    
+}
+
+#top_menu{
+	
+	background-color: #ffffff;
+    padding: 5px;
+    
+    height: auto;
+    font-size:12px;
+    
+
+}
+
+#content {
+	background-color: white;
+    padding: 5px;
+  
+    height: auto;
+    border:0px solid black;
+    
+}
+
+#bottom {
+    clear: both;
+    background-color: #000000;
+    color: #0080ff;
+    padding: 10px;
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+    border:1px solid black;
+}
+
+
+
+
+
+
+.tabela{   
+   border-collapse:collapse;
+   border:1px solid #000000;
+   
+   
+}
+
+.naglowki_kolumn{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:2px solid #000000;
+   border-right:1px solid #000000;  
+   padding:10px;
+   
+}
+
+.jasny_wiersz{
+   text-align:center;
+   background:none repeat scroll 0 0 #ffffff;
+   border:1px solid #000000;
+   	
+}
+
+.ciemny_wiersz{
+   text-align:center;
+   background:none repeat scroll 0 0 #c0c0c0;
+   border:1px solid #000000;
+
+}
+.kolumna1{ 
+	border:1px solid #000000; 
+}
+.kolumna2{ 
+	border:1px solid #000000; 
+}
+.kolumna3{ 
+	border:1px solid #000000; 
+}
+.kolumna4{ 
+	border:1px solid #000000; 
+}
+.kolumna5{ 
+	border:1px solid #000000; 
+}
+.kolumna6{ 
+	border:1px solid #000000; 
+}
+.kolumna7{ 
+	border:1px solid #000000; 
+}
+
+.leftMenu{
+	
+	background-color:white;margin:0;padding:0;width:194px;padding:1px;
+}
+
+.menuItem{
+	
+	display:block;width:190px;height:30px;margin:1px;background-color:black;padding:0;
+}
+/*czyszczenie pamieci podrecznej przegladarki ctrl+shift+delete   <- czyczszczenie w przegladarce*/
+.menuItem a{
+	
+	display:block;width:190px;height:30px;color:white;text-decoration:none;text-align:center;line-height:30px;
+}
+/*http://www.w3schools.com/cssref/sel_active.asp*/
+.menuItem a:hover{
+	
+	display:block;width:190px;height:30px;color:blue;text-decoration:underline;text-align:center;line-height:30px;background-color:white;
+}
+
+

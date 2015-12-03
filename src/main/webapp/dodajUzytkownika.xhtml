@@ -5,10 +5,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
-<body> 
 
-<h:form id="rejestrujForm" >
+<ui:composition template="/resources/szablon/szablon.xhtml">
+
+<ui:define name="content">
+ 
+
+  <h:form id="rejestrujForm" >
 		 <p:panel id="panel">
 		
 			<h1>Witaj w panelu rejestracji</h1>
@@ -64,6 +67,6 @@
 			
 			</p:panel>
 		</h:form>
-
-</body> 
+</ui:define>
+</ui:composition>
 </html>

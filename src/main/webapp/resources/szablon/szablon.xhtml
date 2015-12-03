@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <h:outputStylesheet library="css" name="layout.css"  />
+     
+     
+</h:head> 
+
+<h:body > 
+
+	 <div id="top">
+           <table width="100%">
+           		<tr>
+           			<td style="width:80px; height:80px">
+           				<h:graphicImage name="logo.png" library="grafika" width="80px" height="80px"/>
+           			</td>
+           			
+           			<td>
+           			
+           			
+           			</td>
+           		
+           		</tr>
+           
+           </table>
+     </div>
+     
+     <div>
+         <div id="left">
+             <h:form>
+            	<p:tree value="#{treeCompany.tree}" var="tree" animate="true" style="width:200px">
+            		<p:treeNode>
+            			<h:commandLink action="#" value="#{tree}"/>            			
+            		</p:treeNode>
+            	</p:tree>
+             </h:form>
+         </div>
+                
+         <div id="content" class="left_content">
+              <ui:insert name="content">Content</ui:insert>
+         </div> 
+                    
+    </div>
+    
+ 
+        
+    <div id="bottom">
+            <h:outputText value="Copyright © 2015 " />
+            <h:outputText value="EmployeeExpert." style="text-decoration:underline"/>
+            <h:outputText value=" All Rights Reserved." />
+    </div>
+
+    </h:body>
+
+
+<!--  
+   <div id="top">
+           <table border="0" width="100%" style="font-size:12px;">
+           	<tr>
+           		<td style="width:100px;">
+					<h:graphicImage name="logo.jpg" library="grafika" width="195px" height="100">
+					</h:graphicImage>
+           		</td>
+          		<td>
+          			<table width="100%" style="background-color:black;" cellpadding="3" cellspacing="3">
+          				<tr>
+          					<td style="width:38px;">
+          						<h:link outcome="listaUzytkownikow">
+									<h:graphicImage name="go_home.png" library="grafika" style="border:none;" />
+          						</h:link>
+          					</td>
+          					
+          					<td >
+								<ui:include src="/resources/szablon/logowanie-panel.xhtml"/>
+          					</td>
+          				</tr>
+          			</table>
+					
+            	</td>
+            </tr>
+           </table>
+        </div>
+        
+       
+   <div id="left">
+               
+			<ul class="leftMenu">
+						
+			</ul>
+				
+			
+		</div>
+
+	<div id="top_menu">
+		 
+			<p:button value="buton1"  style="position:static"/>  
+			<p:button value="buton2" style="position:static"/>
+			<p:button value="buton3" style="position:static"/>
+		    <p:button value="buton4" style="position:static"/>
+		    <p:button value="buton5" style="position:static"/>
+		    <p:button value="buton6" style="position:static"/>
+
+			
+	</div>
+
+
+
+	<div id="content" class="left_content">
+                <ui:insert name="content">Tresc Właściwa</ui:insert>
+        </div>
+        
+        
+        <div id="bottom">
+            <h:outputText value="Copyright © 2015 " />
+            <h:outputText value="Cinema." style="text-decoration:underline"/>
+            <h:outputText value=" All Rights Reserved." />
+        </div>
+
+
+
+
+</body> 
+-->
+
+</html>

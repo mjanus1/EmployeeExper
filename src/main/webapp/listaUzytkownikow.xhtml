@@ -5,15 +5,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"> 
 
-<h:head>
-	
-	<f:event listener="#{listaUserowForm.init()}" type="preRenderView"></f:event>
-	
-</h:head> 
 
-		
-	
-<h:body> 
+<ui:composition template="/resources/szablon/szablon.xhtml">
+
+<ui:define name="content">
 
 	
 	<h:form id="formListaUzytkownikow">	
@@ -23,7 +18,7 @@
 		
 		<p:dataTable id="tabelaUserow" var="user" value="#{listaUserowForm.lazyModel}" style=" text-align: center" 
 				widgetVar="userTable"
-                emptyMessage="Nie znaleziono użytkowników" filteredValue="#{listaUserowForm.listaFiltracji}" 
+                emptyMessage="Nie znaleziono użytkowników" 
                 scrollable="true" scrollHeight="350" 
                 editable="true" 
                 paginator="true"
@@ -38,10 +33,6 @@
             
           	<f:facet name="header">
           		<h:outputText value="Lista użytkowników" style="text-align:center"/>
-            	<p:outputPanel style="text-align:right">
-               		 <h:outputText value="Wyszukaj:" />
-                	 <p:inputText id="globalFilter" value="" onkeyup="PF('userTable').filter()" style="width:150px" placeholder="Wpisz znak..." />
-            	</p:outputPanel>
             </f:facet>
                          
 
@@ -162,8 +153,8 @@
 	</h:form>
 		
 		
-	
 
 
-</h:body> 
+</ui:define>
+</ui:composition> 
 </html>

@@ -73,9 +73,13 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 		return dao.findAll(pageable);
 	}
 
+
+	@Override
+	public Page<Uzytkownik> findAll(Specification<Uzytkownik> spec,Pageable peagable) {
 	
-	
-	
+		return dao.findAll(spec, peagable);
+	}
+
 
 	@Override
 	public Uzytkownik saveUzytkownik(Uzytkownik user) {	
@@ -89,12 +93,6 @@ public class UzytkownikServiceImpl implements IUzytkownikService{
 
 	public IUzytkownikDAO getDao() {
 		return dao;
-	}
-
-	@Override
-	public Page<Uzytkownik> findAll(Specification<Uzytkownik> spec,Pageable peagable) {
-	
-		return dao.findAll(spec, peagable);
 	}
 
 
