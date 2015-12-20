@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" > 
+
+
+
+<h:form id="dodajGrupe" >
+	<p:messages globalOnly="true" showDetail="true" showSummary="false" errorStyle="color:red;" infoStyle="color:blue;" warnStyle="color:black" />              
+    
+	<h:panelGrid columns="3">
+		<p:outputLabel value="Nazwa gupy" />
+		<p:inputText id="name" value="" style="width:150px"/>
+		<p:message for="name"/>
+		
+		<p:outputLabel value="Opis grupy" />
+		<p:inputTextarea id="describe" value="" style="width:150px;hight:300px"/>
+		<p:message for="name"/>
+		
+	</h:panelGrid>	
+	
+	
+</h:form>
+
+</html>

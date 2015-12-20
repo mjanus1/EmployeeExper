@@ -18,7 +18,7 @@
 		
 		<p:dataTable id="tabelaUserow" var="user" value="#{listaUserowForm.lazyModel}" style=" text-align: center" 
 				widgetVar="userTable"
-                emptyMessage="Nie znaleziono użytkowników" 
+                emptyMessage="#{msgs.auth_notFoundUser}" 
                 scrollable="true" scrollHeight="350" 
                 editable="true" 
                 paginator="true"
@@ -32,25 +32,25 @@
            <p:ajax event="rowEditCancel" listener="#{listaUserowForm.onRowCancel}" update="@form:msgs"/> 
             
           	<f:facet name="header">
-          		<h:outputText value="Lista użytkowników" style="text-align:center"/>
+          		<h:outputText value="#{msgs.auth_listaUserow}" style="text-align:center"/>
             </f:facet>
                          
 
-            <p:column   headerText="Login" sortBy="#{user.login}"  filterBy="#{user.login}">
+            <p:column   headerText="#{msgs.auth_login}" sortBy="#{user.login}"  filterBy="#{user.login}">
             	<p:cellEditor>
             		<f:facet name="output"><h:outputText value="#{user.login}" /></f:facet>
             	    <f:facet name="input"><p:inputText id="Input" value="#{user.login}"  style="width:100%;height:100%" disabled="true"/></f:facet>          		 
             	</p:cellEditor>	
             </p:column>
          
-			<p:column headerText="Hasło">
+			<p:column headerText="#{msgs.auth_haslo}">
 				<p:cellEditor>
 					<f:facet name="output"><h:outputText value="#{user.haslo}" /></f:facet> 
 					<f:facet name="input"><p:inputText value="#{user.haslo}" style="width:100%;height:100%"/></f:facet>
 				</p:cellEditor>
 			</p:column>	 		
 			 
-			<p:column  headerText="Status" >
+			<p:column  headerText="#{msgs.auth_status}" >
 			  <p:cellEditor>
            		
                <f:facet name="output"><h:outputText value="#{user.status ? 'true': 'false'}" /> </f:facet>
@@ -65,7 +65,7 @@
               </p:cellEditor>
        	    </p:column>					 	
 		 	 
-			<p:column  headerText="Czy aktywne" >
+			<p:column  headerText="#{msgs.auth_isActive}" >
 			  <p:cellEditor>
             	
                <f:facet name="output"><h:outputText value="#{user.aktywne ? 'true': 'false'}" /></f:facet>
@@ -84,7 +84,7 @@
 			<p:column  width="80" >
 			 <f:facet name="header">
 			   <h:outputText id="head" value="Prób..." />
-			   <p:tooltip id="toolTipGrow" for="head" value="Liczba prób logowania użytkownika" showEffect="clip" hideEffect="explode" />	
+			   <p:tooltip id="toolTipGrow" for="head" value="#{msgs.auth_numberTrayLogin}" showEffect="clip" hideEffect="explode" />	
 			 </f:facet>
 			  <p:cellEditor>		
 				<f:facet name="output"><h:outputText value="#{user.liczaProbLogowania}" /></f:facet>
@@ -101,7 +101,7 @@
 			</p:column>
 			
 			
-			<p:column headerText="Ważność konta od" width="100">
+			<p:column headerText="#{msgs.auth_waznoscOd}" width="100">
 			  <p:cellEditor>
 				<f:facet name="output">
 					<h:outputText value="#{user.waznoscKontaOd}">
@@ -115,7 +115,7 @@
 			</p:column>
 		
 		
-			<p:column headerText="Ważność konta do" width="100">
+			<p:column headerText="#{msgs.auth_waznoscDo}" width="100">
 			  <p:cellEditor>
 				<f:facet name="output">
 					<h:outputText value="#{user.waznoscKontaDo}">
@@ -133,7 +133,7 @@
 				<p:rowEditor />
 			</p:column>	
 			   	    	
-			<p:column id="a" headerText="Usuń" width="50">
+			<p:column id="a" headerText="#{msgs.auth_delete}" width="50">
 			 
 			  	<p:commandLink actionListener="#{listaUserowForm.usunUzytkownikaAkcja()}" update="tabelaUserow,@form:message">
 					<h:graphicImage name="delete.png" library="grafika" style="border:none;" width="24" height="24" alt="usuńUzytkownika"/>				  	

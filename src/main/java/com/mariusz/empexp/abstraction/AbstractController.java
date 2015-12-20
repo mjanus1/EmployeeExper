@@ -23,7 +23,7 @@ public abstract class AbstractController {
 		if(errorCode!=null)
 		{
 			String message=resource.getString(errorCode);
-			if(errorCode.contains("error"))
+			if(errorCode.contains("error"))	
 			{
 				dodajBladGlobalny(""+message, "fewfwf");
 			}
